@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret AR Video Call</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Thư viện PeerJS -->
+    <script src="https://unpkg.com/peerjs@1.5.1/dist/peerjs.min.js"></script>
+    <!-- Thư viện MediaPipe -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Màn hình Đăng nhập / Chờ kết nối -->
+        <div id="login-screen" class="glass-panel">
+            <h2>WebRTC AR Call</h2>
+            <div class="input-group">
+                <label>Mã của bạn:</label>
+                <div class="row">
+                    <input type="text" id="my-id" placeholder="Đang khởi tạo..." readonly>
+                    <button id="copy-btn">Copy</button>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Kết nối với (Mã người gọi):</label>
+                <div class="row">
+                    <input type="text" id="peer-id" placeholder="Nhập ID vào đây">
+                    <button id="call-btn" class="primary">Gọi Video</button>
+                </div>
+            </div>
+            <div class="settings">
+                <label>Hiệu ứng AR (Ngụy trang):</label>
+                <select id="ar-select">
+                    <option value="none">Không có</option>
+                    <option value="mask">Mặt nạ Cáo</option>
+                    <option value="bunny">Tai Thỏ</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Màn hình gọi Video -->
+        <div id="call-screen" class="hidden">
+            <!-- Video của người bên kia (Full màn hình) -->
+            <video id="remote-video" autoplay playsinline></video>
+            
+            <!-- Vùng hiển thị video của mình (Góc nhỏ) -->
+            <div class="local-container">
+                <!-- Video gốc lấy từ Camera (Bị ẩn, chỉ dùng làm nguồn cho MediaPipe) -->
+                <video id="local-video" autoplay playsinline muted class="hidden"></video>
+                <!-- Canvas hiển thị video gốc + các hiệu ứng AR. Đây là thứ được gửi qua mạng -->
+                <canvas id="output-canvas"></canvas>
+            </div>
+            
+            <div class="controls-bar glass-panel">
+                <div id="audio-meter">
+                    <div id="audio-level" style="width: 0%;"></div>
+                </div>
+                <button id="end-call-btn" class="danger">Kết thúc</button>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Script tự viết -->
+    <script src="js/ar-engine.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

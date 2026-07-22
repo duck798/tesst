@@ -1,0 +1,204 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: #0f172a;
+    color: #f1f5f9;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Glassmorphism Panel */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    z-index: 10;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.glass-panel h2 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #38bdf8;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+}
+
+.row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+input {
+    flex: 1;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    outline: none;
+    transition: all 0.3s;
+}
+
+input:focus {
+    border-color: #38bdf8;
+}
+
+button {
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 8px;
+    background: #334155;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background: #475569;
+}
+
+button.primary {
+    background: #0284c7;
+}
+
+button.primary:hover {
+    background: #0369a1;
+}
+
+button.danger {
+    background: #e11d48;
+}
+
+button.danger:hover {
+    background: #be123c;
+}
+
+.settings {
+    margin-top: 1rem;
+}
+
+select {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    margin-top: 0.5rem;
+    outline: none;
+}
+
+select option {
+    background: #1e293b;
+    color: white;
+}
+
+/* Call Screen */
+#call-screen {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#remote-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #000;
+}
+
+.local-container {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 150px;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    background: #000;
+    z-index: 5;
+}
+
+/* Video ẩn đi, chỉ dùng Canvas để hiển thị */
+.hidden {
+    display: none !important;
+}
+
+#output-canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Lật ngang để giống gương */
+    transform: scaleX(-1);
+}
+
+.controls-bar {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem 2rem;
+    width: auto;
+}
+
+#audio-meter {
+    width: 100px;
+    height: 10px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#audio-level {
+    height: 100%;
+    background: #10b981;
+    width: 0%;
+    transition: width 0.1s linear, background-color 0.1s linear;
+}
+
+/* Loading Filter Effect (Nhíu mày) */
+.grayscale-filter {
+    filter: grayscale(100%);
+}
